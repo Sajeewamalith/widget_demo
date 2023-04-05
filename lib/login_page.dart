@@ -27,11 +27,29 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
       body: Container(
-        color: Colors.orange,
+        padding: EdgeInsets.symmetric(horizontal: 10 , vertical: 10),
+        margin: EdgeInsets.symmetric(horizontal: 10 , vertical: 10),
+        decoration: BoxDecoration(
+          color: Colors.orange,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.4),
+              blurRadius: 2.0,
+              spreadRadius: 3.0
+            )
+          ]
+        ),
+
         width: 200,
         height: 100,
-        child: Text(''),
-      ),
+        child:Center(
+          child:Text(' Login Page' , style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+        ),),
+      )
+    ),
     );
   }
 }
