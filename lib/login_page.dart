@@ -44,11 +44,8 @@ class _LoginPageState extends State<LoginPage> {
         width: 200,
         height: 100,
         child:Center(
-          child:Text(' Login Page' , style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-        ),),
-      )
+          child: Image.network('https://i.pinimg.com/564x/71/b3/e4/71b3e4159892bb319292ab3b76900930.jpg')
+    )
     ),
     );
   }
