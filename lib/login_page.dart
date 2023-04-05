@@ -10,6 +10,10 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
 
+  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
+
   @override
   void initState() {
     // TODO: implement initState
@@ -27,26 +31,69 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10 , vertical: 10),
-        margin: EdgeInsets.symmetric(horizontal: 10 , vertical: 10),
-        decoration: BoxDecoration(
-          color: Colors.orange,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.4),
-              blurRadius: 2.0,
-              spreadRadius: 3.0
-            )
-          ]
-        ),
-
-        width: 200,
-        height: 100,
-        child:Center(
-          child: Image.asset('assets/logoImage.jpg')
-    )
+       child: Column(
+         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+         crossAxisAlignment: CrossAxisAlignment.center,
+         children: [
+           Container(
+             padding:EdgeInsets.symmetric(vertical: 20) ,
+             child: Center(
+              child: Text('Login' , style: TextStyle(
+                  color: Colors.blue,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold
+              ),),
+      )
+           ),
+           Container(
+             padding: EdgeInsets.only(top: 10,bottom: 10),
+             width: 300,
+             child: Image.network('https://i.pinimg.com/564x/71/b3/e4/71b3e4159892bb319292ab3b76900930.jpg'),
+           ),
+           ////// Input text form fields (Username , password)
+           Container(
+             padding: EdgeInsets.symmetric(horizontal: 20),
+             child: Column(
+               children: [
+                 Container(
+                   padding: const EdgeInsets.only(bottom: 20),
+                   child: TextFormField(
+                      controller: _usernameController,
+                     decoration: const InputDecoration(
+                       border: UnderlineInputBorder(),
+                       labelText: 'Enter your username',
+                       hintText: 'Username'
+                     ),
+                   ) ,
+                 ),
+                 Container(
+                   padding: const EdgeInsets.only(bottom: 20),
+                 child: TextFormField(
+                   controller: _passwordController,
+                   decoration: const InputDecoration(
+                       border: UnderlineInputBorder(),
+                       labelText: 'Enter your password',
+                       hintText: 'password'
+                   ),
+                 ),
+       ),
+    ],
+      ),
     ),
+           //////////// Login Button
+           Container(
+             padding: EdgeInsets.symmetric(vertical: 30 ) ,
+             width: 200,
+             child: ElevatedButton(
+               onPressed: () {  },
+               child: Text('Login',style: TextStyle(
+                 color: Colors.white,
+               ),),
+             ),
+           )
+      ],
+    ),
+      ),
     );
   }
 }
