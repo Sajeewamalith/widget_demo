@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:widget_demo/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -91,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                padding: EdgeInsets.symmetric(vertical: 30 ) ,
                width: 200,
                child: ElevatedButton(
-                 onPressed: () {  },
+                 onPressed: loginButtonClick,
                  child: Text('Login',style: TextStyle(
                    color: Colors.white,
                  ),),
@@ -103,5 +104,14 @@ class _LoginPageState extends State<LoginPage> {
 
       ),
     );
+  }
+
+  void loginButtonClick(){
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Homepage() ));
+ //   if(_usernameController.text =='user123' && _passwordController.text == '12345'){
+ //     print('Login Success');
+ //   }else{
+ //     print('Login Fail');
+ //   }
   }
 }
