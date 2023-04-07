@@ -1,9 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:widget_demo/login_page.dart';
 import 'package:widget_demo/splash_page.dart';
 
 class Homepage extends StatefulWidget {
-  
+  final String username;
+
+  const Homepage({Key? key, required this.username}) : super(key: key);
 
   @override
   _HomepageState createState() => _HomepageState();
@@ -19,11 +22,27 @@ class _HomepageState extends State<Homepage> {
       ),
       body: Container(
         child: Center(
-        child: ElevatedButton(
-          onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => SplashScreen() ));
-          },
-          child: Text('Log Out'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              child: Center(
+              child: Text('Welcome ${widget.username}',
+                  style: TextStyle(fontSize: 30),
+              ),
+             )
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 30),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                  },
+                   child: Text('Log out'),
+                ),
+            )
+          ],
         ),
         ),
       ),
