@@ -10,33 +10,34 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
+  @override
+  void initState(){
+  super.initState();
+  navigateToLoginScreen(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       height: double.infinity,
       color: Colors.white,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children:[
-        Center(
+      child: Center(
+
+
           child: Image.network('https://i.pinimg.com/564x/71/b3/e4/71b3e4159892bb319292ab3b76900930.jpg'),
        ),
-          Container(
-            child: Center(
-              child: ElevatedButton(
-                onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage() ));
-                },
-                child: Text('Push and remove until'),
-              ),
-            ),
 
-            )
+            );
+    }
 
+    void navigateToLoginScreen(BuildContext context){
+         
+        Future.delayed(Duration (seconds: 3) ,(){
+          
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage()));
+        });
+    }
 
-    ],
-      )
-    );
-  }
 }

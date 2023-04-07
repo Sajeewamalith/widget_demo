@@ -107,11 +107,35 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void loginButtonClick(){
-    Navigator.push(context, MaterialPageRoute(builder: (context) => Homepage() ));
- //   if(_usernameController.text =='user123' && _passwordController.text == '12345'){
- //     print('Login Success');
- //   }else{
- //     print('Login Fail');
- //   }
+
+    if(_usernameController.text =='user123' && _passwordController.text == '12345'){
+     print('Login Success');
+     Navigator.push(context, MaterialPageRoute(builder: (context) => Homepage() ));
+        }else{
+      print('Login Fail');
+      showAlertDialog(context);
+    }
+  }
+
+  showAlertDialog(BuildContext context){
+
+    Widget okButton = ElevatedButton(
+        onPressed: (){
+          Navigator.pop(context);
+    }, child: Text(
+         'OK'
+    ));
+     AlertDialog alertDialog = AlertDialog(
+       title: Text('Error'),
+       content: Text('Wrong username and password'),
+       actions: [
+         okButton
+       ],
+     );
+     showDialog(context: context,
+         builder: (BuildContext context){
+       return alertDialog;
+         }
+     );
   }
 }
