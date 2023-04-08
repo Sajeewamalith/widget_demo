@@ -32,6 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
             );
     }
 
+    //////////////  Navigate to the login screen with 3 seconds ............
     void navigateToLoginScreen(BuildContext context){
          
         Future.delayed(Duration (seconds: 3) ,(){
