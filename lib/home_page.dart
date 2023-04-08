@@ -13,7 +13,8 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  List<String> data = ['Monday' , 'Tuesday' , 'Wednesday','Thursday','Friday'];
+  List<String> data = ['Monday' , 'Tuesday' , 'Wednesday','Thursday','Friday',
+    'Monday' , 'Tuesday' , 'Wednesday','Thursday','Friday'];
 
     @override
   Widget build(BuildContext context) {
@@ -38,26 +39,32 @@ class _HomepageState extends State<Homepage> {
              )
             ),
             Expanded(
-                child: ListView.separated(
+                child: ListView.builder(
                   //physics: NeverScrollableScrollPhysics(),
                   itemCount: data.length,
-                  separatorBuilder:(context,index) {
-                 return Container(color: Colors.grey,height:1,);
-            },
-            itemBuilder: (context , index){
+
+                   itemBuilder: (context , index){
                  return Container(
-                     margin: EdgeInsets.symmetric(vertical: 10),
-                     height: 50,
+                   margin: const EdgeInsets.symmetric(vertical: 10),
                      decoration: BoxDecoration(
-                         borderRadius: BorderRadius.circular(10),
-                         color: Colors.blue
+                       color: Colors.white,
+                       borderRadius: BorderRadius.circular(10),
+                       boxShadow: [
+                         BoxShadow(
+                           color: Colors.grey.withOpacity(0.4),
+                           spreadRadius: 3,
+                           blurRadius: 3
+                         )
+                       ]
                      ),
-                     child: Center(
-                       child: Text(data[index] , style: TextStyle(
-                           color: Colors.white
-                       ),),
-                     )
-                 );
+                   child: ListTile(
+                       leading: const Icon(Icons.calendar_today, color: Colors.orange,) ,
+                       title: Text(data[index], style: const TextStyle(color: Colors.black),),
+                       subtitle: const Text('Days', style: TextStyle(color: Colors.black),),
+                       trailing: const Icon(Icons.delete,color: Colors.red,),
+                     //  IconButton(icon: Icon(Icons.delete),color: Colors.red, onPressed: () {  },),
+                 ),
+                  );
             },
 
 
@@ -66,7 +73,7 @@ class _HomepageState extends State<Homepage> {
 
 
                 )
-      ),
+            ),
             /////////////////// Log out button .....................
             Container(
               padding: EdgeInsets.symmetric(vertical: 30),
