@@ -5,7 +5,8 @@ import 'package:http/http.dart' as http;
 
 class RestAPIService{
 
-  String apiUrl = 'https://mocki.io/v1/c36350e3-a20b-457f-9974-38bf0cca5041';
+    String apiUrl = 'https://mocki.io/v1/ed0c6388-7a27-4c27-942b-f1b6b358178e';
+  //String apiUrl = 'https://mocki.io/v1/c36350e3-a20b-457f-9974-38bf0cca5041';
 
   //////// Future method to get all users from API url.....(response or error)
   Future<List<User>> getUsers()  async {
