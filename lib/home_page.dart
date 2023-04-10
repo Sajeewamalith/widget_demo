@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:widget_demo/rest_api_service.dart';
+import 'package:widget_demo/user_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -38,8 +39,12 @@ class _HomePageState extends State<HomePage> {
                        itemCount: snapShot.data?.length ,
                        itemBuilder: (context , index){
                          //return Container(margin: EdgeInsets.all(10),height: 50, width: 200,color: Colors.blue,);
-                           return GestureDetector(
-                             onTap: (){},
+                           return InkWell(
+                             onTap: (){
+                               Navigator.push(context, MaterialPageRoute(builder: (context) => UserScreen(
+                                 user: snapShot.data![index],
+                               )));
+                             },
                              child: Container(
                                decoration: BoxDecoration(
                                  color: Colors.white,
@@ -57,6 +62,14 @@ class _HomePageState extends State<HomePage> {
                                child: ListTile(
                                  title: Text(snapShot.data![index].name ?? '', style: TextStyle(fontSize: 18,color: Colors.black),),
                                  subtitle: Text(snapShot.data![index].city ?? '', style: TextStyle(fontSize: 15,color: Colors.black),),
+                                 leading: ClipOval(
+                                   child: Image.network(snapShot.data![index].image , fit:BoxFit.cover,width: 60 ,height: 60,),
+                                 ),
+                                 trailing: IconButton(
+                                   icon: Icon(Icons.favorite_border),
+                                   onPressed: () {  },
+
+                                 ) ,
                                ),
                              ),
                            );
