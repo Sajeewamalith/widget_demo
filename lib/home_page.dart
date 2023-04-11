@@ -19,19 +19,34 @@ class _HomePageState extends State<HomePage> {
 
  // List<User> usersList = List<User>();
 
+  List<bool> favouriteStatusList = [];
+  List<User> favouriteUsersList = [];
+
+  late Icon favouriteIcon;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
 
-    apiService.getUsers();
-    //.then((value) {
+    apiService.getUsers()//;
+    .then((value) {
 
     //  if(value != null){
    //     usersList = value;
    //   }
+      if(value.isNotEmpty){
 
-   // });
+        for(User user in value){
+          //if(favouriteUsersList.contains(user)){
+            
+         // }
+             favouriteStatusList.add(false);
+        }
+      }
+
+    });
+    favouriteIcon = Icon(Icons.favorite_border,color: Colors.red,);
   }
 
   @override
@@ -79,9 +94,27 @@ class _HomePageState extends State<HomePage> {
                                    child: Image.network(snapShot.data![index].image , fit:BoxFit.cover,width: 60 ,height: 60,),
                                  ),
                                  trailing: IconButton(
-                                   icon: Icon(Icons.favorite_border),
-                                   onPressed: () {  },
+                                   icon: getFavouriteIcon(index),
+                                   onPressed: () {
 
+                                     setState(() {
+                                     //  if(favouriteStatusList[index]){
+                                    //          favouriteStatusList[index] = false;
+                                    //   }
+                                      favouriteStatusList[index] = !favouriteStatusList[index];
+
+                                       if(favouriteUsersList.contains(snapShot.data![index])){
+                                           favouriteUsersList.remove(snapShot.data![index]);
+                                           print('removed');
+                                       }else{
+                                         favouriteUsersList.add(snapShot.data![index]);
+                                         print('added');
+                                       }
+                                     });
+                                    // for(var item in favouriteUsersList){
+                                    //       print(item.name);
+                                    // }
+                                   },
                                  ) ,
                                ),
                              ),
@@ -106,4 +139,12 @@ class _HomePageState extends State<HomePage> {
 
     );
   }
+
+   Icon  getFavouriteIcon(int index){
+        if(favouriteStatusList[index]){
+          return Icon(Icons.favorite , color: Colors.red,);
+        }else{
+          return Icon(Icons.favorite_border , color: Colors.red,);
+        }
+   }
 }
