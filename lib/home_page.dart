@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:widget_demo/rest_api_service.dart';
+import 'package:widget_demo/user.dart';
 import 'package:widget_demo/user_screen.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,12 +17,21 @@ class _HomePageState extends State<HomePage> {
 
   final apiService = RestAPIService();
 
+ // List<User> usersList = List<User>();
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
 
     apiService.getUsers();
+    //.then((value) {
+
+    //  if(value != null){
+   //     usersList = value;
+   //   }
+
+   // });
   }
 
   @override
@@ -30,9 +42,10 @@ class _HomePageState extends State<HomePage> {
       body: Container(
         child: Column(
           children: [
-            Expanded(child: FutureBuilder(
-              future: apiService.getUsers(),
-              builder: (context , snapShot){
+            Expanded(
+                child: FutureBuilder(
+                 future: apiService.getUsers(),
+                  builder: (context , snapShot){
 
                 if(snapShot.hasData){
                      return ListView.builder(
@@ -78,12 +91,12 @@ class _HomePageState extends State<HomePage> {
                 }else{
                   return Container(
                     child: Center(
-                      child: Text('Loading....' , style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 15,
-                      ), ),
-                    ),
-                  );
+                      child: SpinKitCircle(
+                      color: Colors.orange,
+                      ),
+                  ),
+                    );
+
                 }
               } ,
             ))
